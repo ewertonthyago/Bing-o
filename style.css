@@ -1,0 +1,152 @@
+  body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #0f111a; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #1a1d29; 
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #ff79c633; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 121, 198, 0.05);
+            text-align: center;
+            max-width: 520px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #34495e;
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .bola-sorteada {
+            font-family: 'Courier New', Courier, monospace; 
+            font-size: 72px;
+            font-weight: bold;
+            color: #ff79c6; 
+            background-color: #121420;
+            width: 140px;
+            height: 140px;
+            line-height: 135px;
+            border-radius: 8px; 
+            margin: 25px auto;
+            border: 2px solid #ff79c6;
+            box-shadow: 0 0 15px rgba(255, 121, 198, 0.2);
+            text-shadow: 0 0 10px rgba(255, 121, 198, 0.5);
+        }
+
+        .menu-botoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        button {
+            padding: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-sortear {
+            grid-column: span 2;
+            background-color: transparent;
+            color: #d64380;
+            border: 1px solid #ff79a6;
+        }
+        .btn-sortear:hover { 
+            background-color: #b879ff; 
+            color: #121420;
+            box-shadow: 0 0 15px rgba(255, 121, 198, 0.4);
+        }
+
+        .btn-acao { 
+            background-color: #212636; 
+            color: #8be9fd; 
+            border: 1px solid #282a36;
+        }
+        .btn-acao:hover { 
+            background-color: transparent;
+            border-color: #8be9fd;
+            box-shadow: 0 0 10px rgba(139, 233, 253, 0.2);
+        }
+
+        .btn-sair { 
+            background-color: #212636; 
+            color: #ff5555; 
+            border: 1px solid #282a36;
+        }
+        .btn-sair:hover { 
+            border-color: #ff5555;
+            background-color: rgba(255, 85, 85, 0.1);
+        }
+
+        .painel-grade {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 6px;
+            margin-bottom: 25px;
+            background-color: #121420;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #212636;
+        }
+
+        .bola-item {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            font-weight: bold;
+            color: #44475a; /* Cor apagada inicial */
+            background-color: #1a1d29;
+            padding: 6px 0;
+            border-radius: 4px;
+            border: 1px solid #212636;
+            transition: all 0.3s ease;
+        }
+
+
+        .bola-item.sorteada {
+            color: #121420;
+            background-color: #f1304a;
+            border-color: #f72d59;
+            box-shadow: 0 0 8px rgba(255, 121, 198, 0.5);
+        }
+
+        .painel-exibicao {
+            background-color: #121420;
+            border: 1px solid #212636;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 60px;
+            text-align: left;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #f8f8f2;
+        }
+
+        .titulo-painel {
+            font-weight: bold;
+            color: #ccd2e4;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
