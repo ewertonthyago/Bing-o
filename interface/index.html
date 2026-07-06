@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>Interface do Bingão</title>
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>SISTEMA BINGAO</h1>
+        
+        <div class="bola-sorteada" id="visorBola">--</div>
+        
+        <div class="menu-botoes">
+            <button class="btn-sortear" onclick="sortearNumero()">1 - Sortear numero</button>
+            <button class="btn-acao" onclick="exibirSorteados()">2 - Sorteados</button>
+            <button class="btn-acao" onclick="exibirRestantes()">3 - Restantes</button>
+            <button class="btn-sair" onclick="sairDoJogo()">4 - Sair / Reset</button>
+        </div>
+
+        <div class="painel-grade" id="painelGrade">
+            </div>
+
+        <div class="painel-exibicao">
+            <div class="titulo-painel" id="tituloPainel">STATUS DO SISTEMA:</div>
+            <div id="conteudoPainel">Pronto para iniciar o sorteio de dados.</div>
+        </div>
+    </div>
+
+    <script>
+        let numerosSorteados = [];
+        const TOTAL_NUMEROS = 75;
+        let globo = [];
+
+     
+        function inicializarGlobo() {
+            globo = [];
+            for (let i = 1; i <= TOTAL_NUMEROS; i++) {
+                globo.push(i);
+            }
+        }
+
+       
+        function gerarGradeVisual() {
+            const grade = document.getElementById("painelGrade");
+            grade.innerHTML = ""; 
+            
+            for (let i = 1; i <= TOTAL_NUMEROS; i++) {
+                const elementoBola = document.createElement("div");
+                elementoBola.classList.add("bola-item");
+                elementoBola.id = `b-${i}`; 
+                elementoBola.innerText = i < 10 ? "0" + i : i;
+                grade.appendChild(elementoBola);
+            }
+        }
+
+     
+        inicializarGlobo();
+        gerarGradeVisual();
+
+        function sortearNumero() {
+            const visor = document.getElementById("visorBola");
+            const titulo = document.getElementById("tituloPainel");
+            const conteudo = document.getElementById("conteudoPainel");
+
+            if (globo.length === 0) {
+                visor.innerText = "FIM";
+                titulo.innerText = "STATUS:";
+                conteudo.innerText = "Todos os números disponiveis ja foram sorteados.";
+                return;
+            }
+
+            let indice = Math.floor(Math.random() * globo.length);
+            let numero = globo.splice(indice, 1)[0];
+            numerosSorteados.push(numero);
+
+         
+            visor.innerText = numero < 10 ? "0" + numero : numero;
+            
+        
+            const bolaGrade = document.getElementById(`b-${numero}`);
+            if (bolaGrade) {
+                bolaGrade.classList.add("sorteada");
+            }
+            
+            titulo.innerText = "ULTIMO SORTEIO:";
+            conteudo.innerText = `O número ${numero} foi sorteado. Restam ${globo.length} números no globo.`;
+        }
+
+        function exibirSorteados() {
+            const titulo = document.getElementById("tituloPainel");
+            const conteudo = document.getElementById("conteudoPainel");
+
+            titulo.innerText = "NUMEROS EXTRAIDOS (ORDENADOS):";
+
+            if (numerosSorteados.length === 0) {
+                conteudo.innerText = "Nenhum registro encontrado no historico.";
+            } else {
+                let copia = [...numerosSorteados];
+                copia.sort((a, b) => a - b);
+                conteudo.innerText = copia.join(" - ");
+            }
+        }
+
+        function exibirRestantes() {
+            const titulo = document.getElementById("tituloPainel");
+            const conteudo = document.getElementById("conteudoPainel");
+
+            titulo.innerText = "VETOR DE DISPONIVEIS:";
+
+            if (globo.length === 0) {
+                conteudo.innerText = "Vetor vazio. Nao ha mais dados.";
+            } else {
+                conteudo.innerText = globo.join(" - ");
+            }
+        }
+
+        function sairDoJogo() {
+            alert("Obrigado por jogar o Bingão! O jogo será reiniciado.");
+            
+            numerosSorteados = [];
+            inicializarGlobo();
+            gerarGradeVisual(); 
+            
+            document.getElementById("visorBola").innerText = "--";
+            document.getElementById("tituloPainel").innerText = "SISTEMA REINICIADO";
+            document.getElementById("conteudoPainel").innerText = "Todos os dados e o painel geral foram limpos. Pronto para nova carga.";
+        }
+    </script>
+</body>
+</html>
